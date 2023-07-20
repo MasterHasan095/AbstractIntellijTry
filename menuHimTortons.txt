@@ -1,0 +1,37 @@
+8
+Hot Drinks,Cold Drinks,Bagels,Timbits,Muffins,Donuts,BreakFast,BakedGoods
+0,1
+1,Americano,2.89,5
+1,Brewed Coffee,2.19,4
+1,Dark Roast Brewed Coffee,2.19,4
+1,Steeped Tea,2.19,0
+1,Speciality Tea,2.19,0
+1,Coffee Mocha,2.69,141
+1,French vanilla,3.29,326
+1,Hot Chocolate,2.69,282
+1,White Hot Chocolate,2.69,324
+1,Espresso,1.79,0
+0,1
+2,Iced Coffee,2.89,148
+2,Orange Ginger sparkling Quencher,3.79,110
+2,Blackberry Yuzu Sparkling Quencher,3.79,130
+2,Caramel Toffee Cold Brew,4.59,240
+2,Speciality Tea,2.19,0
+2,Coffee Mocha,2.69,141
+2,French vanilla,3.29,326
+2,Hot Chocolate,2.69,282
+2,White Hot Chocolate,2.69,324
+2,Espresso,1.79,0
+2,Strawberry Watermelon Quenchers,3.09,147
+2,vanilla Creamy Chill,4.99,516
+0,0
+3,Plain Bagel,2.29,290
+3,Everything Bagel,2.29,297
+3,12 Grain bagel,2.29,334
+3,Four Cheese bagel,3.29,323
+3,Cinnamon Raisin Bagel,2.29,300
+3,Hot Chocolate,2.69,282
+3,White Hot Chocolate,2.69,324
+3,Espresso,1.79,0
+3,Strawberry Watermelon Quenchers,3.09,147
+3,vanilla Creamy Chill,4.99,516
