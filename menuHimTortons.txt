@@ -44,8 +44,11 @@ Hot Drinks,Cold Drinks,Bagels,Timbits,Muffins,Donuts,BreakFast,BakedGoods
 3,12 Grain bagel,2.29,334
 3,Four Cheese bagel,3.29,323
 3,Cinnamon Raisin Bagel,2.29,300
-3,Hot Chocolate,2.69,282
+3,6 Assorted Bagels,10.99,1980
 3,White Hot Chocolate,2.69,324
-3,Espresso,1.79,0
-3,Strawberry Watermelon Quenchers,3.09,147
-3,vanilla Creamy Chill,4.99,516
+3,Philadelphia Bulk Cream Cheese,4.09,640
+0,2
+4,10 Assorted Timbits,3.49,1000
+4,20 Assorted Timbits,5.79,2000
+4,50 Assorted Timbits,11.49,5000
+
