@@ -37,6 +37,7 @@ Hot Drinks,Cold Drinks,Bagels,Timbits,Muffins,Donuts,BreakFast,BakedGoods
 2,Iced Caramel Latte,4.69,200
 2,Chocolate Creamy Chill,4.99,518
 2,Vanilla Creamy Chill,4.99,516
+2,Milk,4.09,150
 0,0
 3,Plain Bagel,2.29,290
 3,Everything Bagel,2.29,297
