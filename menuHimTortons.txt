@@ -1,5 +1,5 @@
 Hot Drinks,Cold Drinks,Bagels,Donuts & Timbits,Muffins,Croissants,Pastries,Cookies,BreakFast,Lunch & Dinner
-restart,1,[Small,Medium,Large]
+restart,1,1,Small:Medium:Large:Extra Large
 1,Americano,2.89,5
 1,Brewed Coffee,2.19,4
 1,Dark Roast Brewed Coffee,2.19,4
@@ -10,7 +10,7 @@ restart,1,[Small,Medium,Large]
 1,Hot Chocolate,2.69,282
 1,White Hot Chocolate,2.69,324
 1,Espresso,1.79,0
-restart,1,[Small,Medium,Large]
+restart,2,1,Small:Medium:Large:Extra Large
 2,Iced Coffee,2.89,148
 2,Orange Ginger sparkling Quencher,3.79,110
 2,Blackberry Yuzu Sparkling Quencher,3.79,130
@@ -37,13 +37,13 @@ restart,1,[Small,Medium,Large]
 2,Chocolate Creamy Chill,4.99,518
 2,Vanilla Creamy Chill,4.99,516
 2,Milk,4.09,150
-restart,2,[Toasted,Spreads,Cheese,Meat,Vegetables,Heated]
-[Yes,No]
-[Cream Cheese, Garlic Cream Cheese, Butter,Strawberry Jam,Peanut Butter]
-[Cheddar Cheese]
-[Bacon]
-[Tomato]
-[Yes,No]
+restart,3,2,Toasted:Spreads:Cheese:Meat:Vegetables:Heated
+Yes,No
+Cream Cheese,Garlic Cream Cheese,Butter,Strawberry Jam,Peanut Butter
+Cheddar Cheese
+Bacon
+Tomato
+Yes,No
 3,Plain Bagel,2.29,290
 3,Everything Bagel,2.29,297
 3,12 Grain bagel,2.29,334
@@ -52,7 +52,8 @@ restart,2,[Toasted,Spreads,Cheese,Meat,Vegetables,Heated]
 3,6 Assorted Bagels,10.99,1980
 3,White Hot Chocolate,2.69,324
 3,Philadelphia Bulk Cream Cheese,4.09,640
-restart,1,[Apple Fritter Donut,Boston Cream Donut,Chocolate Dip Donut, Vanilla Dip Donut, Honey Cruller Donut , Honey Dip Donut,Birthday Cake Timbit, Chocolate Glazed Timbit, Honey Dip Timbit, Old Fashioned Glazed Timbit, Old Fashion Plain Timbit,Sour Cream Glazed Timbit]
+restart,4,3,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla Dip Donut:Honey Cruller Donut:Honey
+DipDonut:Birthday Cake Timbit:Chocolate Glazed Timbit:Honey Dip Timbit:Old Fashioned Glazed Timbit:Old Fashion PlainTimbit:Sour Cream Glazed Timbit
 4,1 Donut,1.79,240-330
 4,6 Assorted Donuts,8.69,2160
 4,12 Assorted Donuts,16.09,4320
@@ -60,34 +61,34 @@ restart,1,[Apple Fritter Donut,Boston Cream Donut,Chocolate Dip Donut, Vanilla D
 4,10 Assorted Timbits,3.49,1000
 4,20 Assorted Timbits,5.79,2000
 4,50 Assorted Timbits,11.49,5000
-restart,0
+restart,5,0
 5,Chocolate Chip Muffin,2.29,420
 5,Fruit Explosion Muffin,2.69,360
-restart,0
+restart,6,0
 6,Croissants,2.59,323
 6,Chocolate Croissant,2.89,347
-restart,0
+restart,7,0
 7,Spicy Jalapeno Savoury Pastry,3.49,250
 7,Herb & Garlic Savoury Pastry,3.49,240
-restart,0
+restart,8,0
 8,Reese's Mini Dream Cookie with nuts,2.69,380
 8,Dream Cookie with M&M Minis,2.69,360
 8,Chocolate Chunk Cookie,1.79,220
-restart,2,[Bread,Sauce,Cheese,Meat,Vegetable]
-[Everything,Four Cheese, Plain Bagel,Plain Croissant]
-[Chipotle]
-[Cheddar]
-{Bacon,Egg]
-[Tomato,Lettuce,Onion]
+restart,9,2,Bread:Sauce:Cheese:Meat:Vegetable
+Everything,Four Cheese, Plain Bagel,Plain Croissant
+Chipotle
+Cheddar
+Bacon,Egg
+Tomato,Lettuce,Onion
 9,Smokey Honey Bacon Bagel,5.99,500
 9,Sausage Breakfast Sandwich,4.89,512
 9,Farmer's Breakfast Sandwich,5.79,680
 9,Hashbrown,2.29,128
-restart,2,[Bread,Sauce,Cheese,Meat,Vegetable]
-[Everything,Four Cheese, Plain Bagel,Plain Croissant]
-[Chipotle]
-[Cheddar]
-{Bacon,Egg]
-[Tomato,Lettuce,Onion]
+restart,10,2,Bread:Sauce:Cheese:Meat:Vegetable
+Everything,Four Cheese, Plain Bagel,Plain Croissant
+Chipotle
+Cheddar
+Bacon,Egg
+Tomato,Lettuce,Onion
 10,Loaded Chilli,9.19,560
 10,Chipotle Steak Loaded Wrap,10.19,520
