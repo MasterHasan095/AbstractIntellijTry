@@ -1,0 +1,18 @@
+/* styles.css */
+.button-style {
+    -fx-font-size: 25px;
+    -fx-background-color: #336699; /* Set the background color */
+    -fx-text-fill: white; /* Set the text color */
+    -fx-padding: 10px 20px; /* Set the padding */
+    -fx-min-width: 250px;
+    -fx-max-width: 250px;
+    -fx-min-height: 100;
+    -fx-max-height: 100px;
+}
+
+/* styles.css */
+.scroll-pane .scroll-bar:vertical,
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0; /* Set the opacity of the scrollbar to 0 (hidden) */
+}
+
