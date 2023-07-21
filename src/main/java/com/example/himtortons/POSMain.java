@@ -26,7 +26,11 @@ public class POSMain extends Application {
     private List<RadioButton> radioButtons = new ArrayList<>();
     private ArrayList listOf1s = new ArrayList<>();
     Map<String, Integer> dictionary = new HashMap<>();
+
     HBox sizes = new HBox();
+    ScrollPane hBoxScrollPane = new ScrollPane(sizes);
+
+    private boolean sizesAdded = false;
 
 
     @Override
@@ -43,8 +47,11 @@ public class POSMain extends Application {
         majorMenuVBox.setPadding(new Insets(0,0,0,25));
         majorMenuVBox.setAlignment(Pos.CENTER);
         majorMenuPane.setContent(majorMenuVBox);
-        FlowPane minorMenuPane = new FlowPane();
-        minorMenuPane.getChildren().add(sizes);
+        VBox minorMenuPane = new VBox();
+        hBoxScrollPane.getStyleClass().add("scroll-pane");
+        sizes.setSpacing(10);
+        sizes.setPadding(new Insets(0,0,0,10));
+        sizes.setAlignment(Pos.CENTER);
         minorMenuPane.setStyle("-fx-background-color:purple");
         ScrollPane orderPane = new ScrollPane();
         orderPane.setStyle("-fx-background-color:red");
@@ -67,6 +74,7 @@ public class POSMain extends Application {
         AnchorPane.setLeftAnchor(minorMenuPane,300.0);
         minorMenuPane.setPrefHeight(800);
         minorMenuPane.setPrefWidth(800);
+
 
         //All initial Panes Set
 
@@ -106,20 +114,22 @@ public class POSMain extends Application {
                         values.add(splitValue);
                     }
                 }
-
-                if (values.get(0).equals("restart")){
-                    if(values.get(2).equals(1)){
-                        String[] sizeOptions = ((String)values.get(3)).split(":");
+                if (values.get(0).equals("restart")) {
+                    System.out.println(values.get(2));
+                    if (values.get(2).equals(1)) {
                         listOf1s.add(values.get(1));
-                        ToggleGroup sizesRadio = new ToggleGroup();
-                        for (String option : sizeOptions) {
-                            RadioButton radioButton = new RadioButton();
-                            radioButton.setText(option);
-                            radioButton.setToggleGroup(sizesRadio);
-                            sizes.getChildren().add(radioButton);
+                        if (!sizesAdded) {
+                            String[] sizeOptions = ((String) values.get(3)).split(":");
+                            ToggleGroup sizesRadio = new ToggleGroup();
+                            for (String option : sizeOptions) {
+                                RadioButton radioButton = new RadioButton();
+                                radioButton.setText(option);
+                                radioButton.setToggleGroup(sizesRadio);
+                                radioButton.getStyleClass().add("radio-button");
+                                sizes.getChildren().add(radioButton);
+                            }
+                            sizesAdded = true;
                         }
-
-
                     }
                 } line = br.readLine();
             }
@@ -132,10 +142,11 @@ public class POSMain extends Application {
 
         for (Button button : menuButtons) {
             button.setOnAction(e->{
-                minorMenuPane.getChildren().removeAll();
+                minorMenuPane.getChildren().clear();
                 System.out.println(dictionary.get(button.getText()));
                 if(listOf1s.contains(dictionary.get(button.getText()))){
-                    minorMenuPane.getChildren().add(sizes);
+                    System.out.println("working");
+                    minorMenuPane.getChildren().add(hBoxScrollPane);
                 }
 
             });
