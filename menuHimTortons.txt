@@ -38,12 +38,7 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Vanilla Creamy Chill,4.99,516
 2,Milk,4.09,150
 restart,3,2,Toasted:Spreads:Cheese:Meat:Vegetables:Heated
-Yes,No
-Cream Cheese,Garlic Cream Cheese,Butter,Strawberry Jam,Peanut Butter
-Cheddar Cheese
-Bacon
-Tomato
-Yes,No
+Yes:No,Cream Cheese:Garlic Cream Cheese:Butter:Strawberry Jam:Peanut Butter,Cheddar Cheese,Bacon,Tomato,Yes:No
 3,Plain Bagel,2.29,290
 3,Everything Bagel,2.29,297
 3,12 Grain bagel,2.29,334
@@ -52,8 +47,7 @@ Yes,No
 3,6 Assorted Bagels,10.99,1980
 3,White Hot Chocolate,2.69,324
 3,Philadelphia Bulk Cream Cheese,4.09,640
-restart,4,3,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla Dip Donut:Honey Cruller Donut:Honey
-DipDonut:Birthday Cake Timbit:Chocolate Glazed Timbit:Honey Dip Timbit:Old Fashioned Glazed Timbit:Old Fashion PlainTimbit:Sour Cream Glazed Timbit
+restart,4,1,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla Dip Donut:Honey Cruller Donut:Honey DipDonut:Birthday Cake Timbit:Chocolate Glazed Timbit:Honey Dip Timbit:Old Fashioned Glazed Timbit:Old Fashion PlainTimbit:Sour Cream Glazed Timbit
 4,1 Donut,1.79,240-330
 4,6 Assorted Donuts,8.69,2160
 4,12 Assorted Donuts,16.09,4320
@@ -75,20 +69,12 @@ restart,8,0
 8,Dream Cookie with M&M Minis,2.69,360
 8,Chocolate Chunk Cookie,1.79,220
 restart,9,2,Bread:Sauce:Cheese:Meat:Vegetable
-Everything,Four Cheese, Plain Bagel,Plain Croissant
-Chipotle
-Cheddar
-Bacon,Egg
-Tomato,Lettuce,Onion
+Everything:Four Cheese:Plain Bagel:Plain Croissant,Chipotle,Cheddar,Bacon:Egg,Tomato:Lettuce:Onion
 9,Smokey Honey Bacon Bagel,5.99,500
 9,Sausage Breakfast Sandwich,4.89,512
 9,Farmer's Breakfast Sandwich,5.79,680
 9,Hashbrown,2.29,128
 restart,10,2,Bread:Sauce:Cheese:Meat:Vegetable
-Everything,Four Cheese, Plain Bagel,Plain Croissant
-Chipotle
-Cheddar
-Bacon,Egg
-Tomato,Lettuce,Onion
+Everything:Four Cheese:Plain Bagel:Plain Croissant,Chipotle,Cheddar,Bacon:Egg,Tomato:Lettuce:Onion
 10,Loaded Chilli,9.19,560
 10,Chipotle Steak Loaded Wrap,10.19,520
