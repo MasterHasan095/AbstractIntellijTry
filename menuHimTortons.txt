@@ -52,8 +52,7 @@ Yes,No
 3,6 Assorted Bagels,10.99,1980
 3,White Hot Chocolate,2.69,324
 3,Philadelphia Bulk Cream Cheese,4.09,640
-restart,4,3,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla Dip Donut:Honey Cruller Donut:Honey
-DipDonut:Birthday Cake Timbit:Chocolate Glazed Timbit:Honey Dip Timbit:Old Fashioned Glazed Timbit:Old Fashion PlainTimbit:Sour Cream Glazed Timbit
+restart,4,1,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla Dip Donut:Honey Cruller Donut:Honey DipDonut:Birthday Cake Timbit:Chocolate Glazed Timbit:Honey Dip Timbit:Old Fashioned Glazed Timbit:Old Fashion PlainTimbit:Sour Cream Glazed Timbit
 4,1 Donut,1.79,240-330
 4,6 Assorted Donuts,8.69,2160
 4,12 Assorted Donuts,16.09,4320

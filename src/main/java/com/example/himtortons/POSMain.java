@@ -29,15 +29,16 @@ public class POSMain extends Application {
 
 
 //Ye dekhte hai kya hai
-    private List<Button> menuButtons = new ArrayList<>();
+    protected static List<Button> menuButtons = new ArrayList<>();
     private List<Pane> menuPanes = new ArrayList<>();
     private List<RadioButton> radioButtons = new ArrayList<>();
     private ArrayList listOf1s = new ArrayList<>();
     private ArrayList listOf2s = new ArrayList<>();
-    Map<String, Integer> dictionary = new HashMap<>();
+    static Map<String, Integer> dictionary = new HashMap<>();
 
-    HBox sizes = new HBox();
-    ScrollPane hBoxScrollPane = new ScrollPane(sizes);
+    ScrollPane Varieties = new ScrollPane();
+    static HBox varieties = new HBox();
+    ScrollPane hBoxScrollPane = new ScrollPane(varieties);
 
     private boolean sizesAdded = false;
     private boolean varietiesAdded = false;
@@ -49,21 +50,28 @@ public class POSMain extends Application {
         locationSet(); //Sets the location of all the Elements
 
         //Left Pane Button Creation
-        majorMenuPane.setContent(createFirstSetOfButtons(new File("menuHimTortons.txt")));
+        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt")));
         for (Button button : menuButtons) {
             button.setOnAction(e->{
                 minorMenuPane.getChildren().clear();
-                Integer buttonIndex = retrieveButtonIndex(button.getText());
+                Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
                 try {
-                    //Trial Code
-                    int index = 1;
-                    for(Integer value : retrieveRestartType(new File("menuHimTortons.txt"))){
-                        if(value.equals(0)){
-                            System.out.println(index);
+                    List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
+                    System.out.println(tempList);
+                    if (!(tempList.size() == 2)) {
+                        System.out.println("for no options");
+                    }else{
+                        System.out.println("has sub options");
+                        if (tempList.get(0).equals(1)){
+                            System.out.println("Radio Boxes");
+                            Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
+                            minorMenuPane.getChildren().add(Varieties);
+                        }else if (tempList.get(0).equals(2)){
+                            System.out.println("Combo Boxes");
+                            Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
+                            minorMenuPane.getChildren().add(Varieties);
                         }
-                        index++;
                     }
-
 
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -73,14 +81,10 @@ public class POSMain extends Application {
         }
 
         hBoxScrollPane.getStyleClass().add("scroll-pane");
-        sizes.setSpacing(10);
-        sizes.setPadding(new Insets(0,0,0,10));
-        sizes.setAlignment(Pos.CENTER);
 
-
-
-
-
+        varieties.setSpacing(10);
+        varieties.setPadding(new Insets(0,0,0,10));
+        varieties.setAlignment(Pos.CENTER);
 
         primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,orderPane,orderGrid);
 
@@ -91,7 +95,7 @@ public class POSMain extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void locationSet(){ //Sets all pane location and basic css
+    public void locationSet(){ //Sets all pane location
         AnchorPane.setTopAnchor(majorMenuPane, 0.0);
         AnchorPane.setLeftAnchor(majorMenuPane, 0.0);
         majorMenuPane.setPrefHeight(800);
@@ -113,34 +117,13 @@ public class POSMain extends Application {
         orderPane.setStyle("-fx-background-color:red");
         orderGrid.setStyle("-fx-background-color:green");
     }
-    public VBox createFirstSetOfButtons(File filename){
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line = br.readLine();
-            String[] values = line.split(",");
-            System.out.println(line);
-            System.out.println(values.length);
-            for (int i = 0; i < values.length; i++) {
-                Button button = new Button(values[i]);
-                dictionary.put(values[i],i+1);
-                button.getStyleClass().add("button-style"); // Apply the CSS class
-                menuButtons.add(button); // Add the button to the list
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        VBox majorMenuVBox = new VBox();
-        majorMenuVBox.setSpacing(10);
-        majorMenuVBox.setPadding(new Insets(0,0,0,25));
-        majorMenuVBox.getChildren().addAll(menuButtons);
-        return majorMenuVBox;
-    }
+
     public void createUpperMinor(Integer buttonIndex){
         System.out.println("Method call working");
         System.out.println(buttonIndex);
     }
-    public List<Integer> retrieveRestartType(File menuFile) throws IOException {
-        System.out.println("working");
-        List<Integer> restartIndexList = new ArrayList<>();
+    public List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
+        List<Object> restartIndexList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
         String line = "";
         while (line!=null){
@@ -156,14 +139,17 @@ public class POSMain extends Application {
                 }
             }
             if(values.get(0).equals("restart")){
-                restartIndexList.add((Integer) values.get(2));
+                if (values.get(1).equals(buttonIndex)){
+                    restartIndexList.add((Integer) values.get(2));
+                    if (!values.get(2).equals(0)){
+                    restartIndexList.add(values.get(3));
+                    }
+                }
             }
             line = br.readLine();
         }return restartIndexList;
     }
-    public Integer retrieveButtonIndex(String text){
-        return dictionary.get(text);
-    }
+
 
 
     public static void main(String[] args) {
@@ -198,7 +184,7 @@ public class POSMain extends Application {
                                 radioButton.setText(option);
                                 radioButton.setToggleGroup(sizesRadio);
                                 radioButton.getStyleClass().add("radio-button");
-                                sizes.getChildren().add(radioButton);
+                                varieties.getChildren().add(radioButton);
                             }
                             sizesAdded = true;
                         }
@@ -213,7 +199,7 @@ public class POSMain extends Application {
                                 radioButton.setText(option);
                                 radioButton.setToggleGroup(sizesRadio);
                                 radioButton.getStyleClass().add("radio-button");
-                                sizes.getChildren().add(radioButton);
+                                varieties.getChildren().add(radioButton);
                             }
                             varietiesAdded = true;
                         }
