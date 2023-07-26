@@ -69,20 +69,13 @@ restart,8,0
 8,Dream Cookie with M&M Minis,2.69,360
 8,Chocolate Chunk Cookie,1.79,220
 restart,9,2,Bread:Sauce:Cheese:Meat:Vegetable
-Everything,Four Cheese, Plain Bagel,Plain Croissant
-Chipotle
-Cheddar
-Bacon,Egg
-Tomato,Lettuce,Onion
+Everything:Four Cheese:Plain Bagel:Plain Croissant,Chipotle,Cheddar,Bacon:Egg,Tomato:Lettuce:Onion
 9,Smokey Honey Bacon Bagel,5.99,500
 9,Sausage Breakfast Sandwich,4.89,512
 9,Farmer's Breakfast Sandwich,5.79,680
 9,Hashbrown,2.29,128
 restart,10,2,Bread:Sauce:Cheese:Meat:Vegetable
-Everything,Four Cheese, Plain Bagel,Plain Croissant
-Chipotle
-Cheddar
-Bacon,Egg
-Tomato,Lettuce,Onion
+Everything:Four Cheese:Plain Bagel:Plain Croissant,Chipotle,Cheddar,Bacon:Egg,Tomato:Lettuce:Onion
 10,Loaded Chilli,9.19,560
 10,Chipotle Steak Loaded Wrap,10.19,520
+null

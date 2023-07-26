@@ -30,11 +30,13 @@ public class POSMain extends Application {
 
 //Ye dekhte hai kya hai
     protected static List<Button> menuButtons = new ArrayList<>();
+
     private List<Pane> menuPanes = new ArrayList<>();
     private List<RadioButton> radioButtons = new ArrayList<>();
     private ArrayList listOf1s = new ArrayList<>();
     private ArrayList listOf2s = new ArrayList<>();
     static Map<String, Integer> dictionary = new HashMap<>();
+    ScrollPane menuListIndividual = new ScrollPane();
 
     ScrollPane Varieties = new ScrollPane();
     static HBox varieties = new HBox();
@@ -57,28 +59,46 @@ public class POSMain extends Application {
                 Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
                 try {
                     List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
-                    System.out.println("This is templist : " + tempList);
+
                     if (!(tempList.size() == 2)) {
-                        System.out.println("for no options");
+
                     }else{
-                        System.out.println("has sub options");
+
                         if (tempList.get(0).equals(1)){
-                            System.out.println("Radio Boxes");
+
                             Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
                             minorMenuPane.getChildren().add(Varieties);
                         }else if (tempList.get(0).equals(2)){
-                            System.out.println("Combo Boxes");
+
                             Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
                             minorMenuPane.getChildren().add(Varieties);
                         }
                     }
-
+                    System.out.println("Latest CheckPoint");
+                    menuListIndividual.setContent(individualElements.menuListIndividual(buttonIndex,
+                            new File("menuHimTortons.txt")));
+                    minorMenuPane.getChildren().add(menuListIndividual);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
                 //createUpperMinor();
+                for(Button innerButton:individualElements.finalButtons){
+                    innerButton.setOnAction(Event->{
+                        GridPane tempGridPane = (GridPane) innerButton.getGraphic();
+                        Label name = (Label) tempGridPane.getChildren().get(0);
+                        Label price = (Label) tempGridPane.getChildren().get(1);
+                        Label calories = (Label) tempGridPane.getChildren().get(2);
+                        String receiptLine = name.getText() + " : " + price.getText();
+                        System.out.println(receiptLine);
+//                        System.out.println(name.getText());
+//                        System.out.println(tempGridPane);
+//                        System.out.println("Checkpoint");
+                    });
+
+                }
             });
         }
+
 
         hBoxScrollPane.getStyleClass().add("scroll-pane");
 
@@ -118,10 +138,7 @@ public class POSMain extends Application {
         orderGrid.setStyle("-fx-background-color:green");
     }
 
-    public void createUpperMinor(Integer buttonIndex){
-        System.out.println("Method call working");
-        System.out.println(buttonIndex);
-    }
+
     public List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
         List<Object> restartIndexList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
@@ -156,62 +173,7 @@ public class POSMain extends Application {
         launch(args);
     }
 
-    public void method(){
-        File menuFile = new File("menuHimTortons.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(menuFile))) {
-            String line = "";
-            while (line!=null){
 
-                String[] splitLine = line.split(",");
-                List<Object> values = new ArrayList<>();
-                for(String splitValue : splitLine){
-                    try {
-                        Integer intValue = Integer.parseInt(splitValue);
-                        values.add(intValue);
-                    }catch (NumberFormatException e){
-                        values.add(splitValue);
-                    }
-                }
-                if (values.get(0).equals("restart")) {
-                    System.out.println(values.get(2));
-                    if (values.get(2).equals(1)) {
-                        listOf1s.add(values.get(1));
-                        if (!sizesAdded) {
-                            String[] sizeOptions = ((String) values.get(3)).split(":");
-                            ToggleGroup sizesRadio = new ToggleGroup();
-                            for (String option : sizeOptions) {
-                                RadioButton radioButton = new RadioButton();
-                                radioButton.setText(option);
-                                radioButton.setToggleGroup(sizesRadio);
-                                radioButton.getStyleClass().add("radio-button");
-                                varieties.getChildren().add(radioButton);
-                            }
-                            sizesAdded = true;
-                        }
-                    }else if (values.get(2).equals(2)){
-
-                        listOf2s.add(values.get(1));
-                        if (!varietiesAdded) {
-                            String[] varietyMajorOptions = ((String) values.get(3)).split(":");
-                            ToggleGroup sizesRadio = new ToggleGroup();
-                            for (String option : varietyMajorOptions) {
-                                RadioButton radioButton = new RadioButton();
-                                radioButton.setText(option);
-                                radioButton.setToggleGroup(sizesRadio);
-                                radioButton.getStyleClass().add("radio-button");
-                                varieties.getChildren().add(radioButton);
-                            }
-                            varietiesAdded = true;
-                        }
-                    }
-                } line = br.readLine();
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

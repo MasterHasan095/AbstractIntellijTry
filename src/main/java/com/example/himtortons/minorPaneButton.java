@@ -25,7 +25,7 @@ public class minorPaneButton extends POSMain{
             radioButton.setToggleGroup(sizesRadio);
             radioButton.getStyleClass().add("radio-button");
             varieties.getChildren().add(radioButton);
-            System.out.println(option);
+
         }
 
         return varieties;
@@ -38,13 +38,14 @@ public class minorPaneButton extends POSMain{
         String[] Options = ((String) values.get(1)).split(":");
         for (String option : Options) {
             Label label = new Label();
-            label.setText(option);
-            label.getStyleClass().add("combo-button");
+            label.getStyleClass().add("radio-button");
             VBox tempVBox = new VBox();
             ComboBox combobox = comboBoxCreation(buttonIndex,option);
-            tempVBox.getChildren().addAll(label,combobox);
+            combobox.getStyleClass().add("radio-button");
+            label.setGraphic(combobox);
+            tempVBox.getChildren().addAll(label);
             varieties.getChildren().add(tempVBox);
-            System.out.println("Working" + option);
+
         }
 
         return varieties;
@@ -52,17 +53,21 @@ public class minorPaneButton extends POSMain{
 
     public static ComboBox<String> comboBoxCreation(Integer buttonIndex,String optionName) throws IOException {
         ComboBox<String> comboBox1 = new ComboBox<>();
-        HashMap<String,List<String>> listOfComboBoxValues = retrieveComboBoxDropDown(new File("menuHimTortons.txt"),
+        HashMap<String,String> listOfComboBoxValues = retrieveComboBoxDropDown(new File("menuHimTortons.txt"),
                 buttonIndex);
-        System.out.println(listOfComboBoxValues);
-        for (int i = 0;i<listOfComboBoxValues.size();i++){
-            System.out.println(listOfComboBoxValues.get(optionName));
+
+        String[] finalComboBoxList = listOfComboBoxValues.get(optionName).split(":");
+
+        for(String value : finalComboBoxList){
+            comboBox1.getItems().add(value);
+            comboBox1.setValue(optionName);
         }
+
         return comboBox1;
     }
 
     public static HashMap retrieveComboBoxDropDown(File menuFile, Integer buttonIndex) throws IOException {
-        System.out.println("retrieveComboBoxDropDown");
+
         List<String> comboBoxValues = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
         String line;
@@ -85,14 +90,13 @@ public class minorPaneButton extends POSMain{
                         String lineNew = br.readLine();
                         String[] minorMinorSplit = lineNew.split(",");
                         for(int i = 0;i<postSplit.length;i++){
-//                            System.out.println(minorMinorSplit[1]);
                             hashMap.put(postSplit[i],minorMinorSplit[i]);
                         }
                     }
                 }
             }
         }
-        System.out.println("Drop down data ends here");
+
         return hashMap;
     }
 }
