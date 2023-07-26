@@ -57,7 +57,7 @@ public class POSMain extends Application {
                 Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
                 try {
                     List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
-                    System.out.println(tempList);
+                    System.out.println("This is templist : " + tempList);
                     if (!(tempList.size() == 2)) {
                         System.out.println("for no options");
                     }else{
