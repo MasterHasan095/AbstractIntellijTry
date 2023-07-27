@@ -32,7 +32,7 @@ public class POSMain extends Application {
     protected static List<Button> menuButtons = new ArrayList<>();
 
     private List<Pane> menuPanes = new ArrayList<>();
-    private List<RadioButton> radioButtons = new ArrayList<>();
+    protected static List<RadioButton> radioButtons = new ArrayList<>();
     private ArrayList listOf1s = new ArrayList<>();
     private ArrayList listOf2s = new ArrayList<>();
     static Map<String, Integer> dictionary = new HashMap<>();
@@ -68,6 +68,7 @@ public class POSMain extends Application {
 
                             Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
                             minorMenuPane.getChildren().add(Varieties);
+                            radioButtons.get(0).setSelected(true);
                         }else if (tempList.get(0).equals(2)){
 
                             Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
@@ -88,8 +89,16 @@ public class POSMain extends Application {
                         Label name = (Label) tempGridPane.getChildren().get(0);
                         Label price = (Label) tempGridPane.getChildren().get(1);
                         Label calories = (Label) tempGridPane.getChildren().get(2);
-                        String receiptLine = name.getText() + " : " + price.getText();
+                        String variety = null;
+                        for(RadioButton option : radioButtons){
+                            if(option.isSelected()){
+                                variety = option.getText();
+                            }
+                        }
+                        String receiptLine = variety + " "+ name.getText() + " : " + price.getText();
                         System.out.println(receiptLine);
+                        System.out.println(radioButtons);
+
 //                        System.out.println(name.getText());
 //                        System.out.println(tempGridPane);
 //                        System.out.println("Checkpoint");

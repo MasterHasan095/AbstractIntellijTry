@@ -16,7 +16,7 @@ public class minorPaneButton extends POSMain{
     protected static HashMap<String, String> hashMap = new HashMap();
     public static HBox returnRadioBoxSet(List<Object> values){
         varieties.getChildren().clear();
-
+        POSMain.radioButtons.clear();
         String[] sizeOptions = ((String) values.get(1)).split(":");
         ToggleGroup sizesRadio = new ToggleGroup();
         for (String option : sizeOptions) {
@@ -24,8 +24,8 @@ public class minorPaneButton extends POSMain{
             radioButton.setText(option);
             radioButton.setToggleGroup(sizesRadio);
             radioButton.getStyleClass().add("radio-button");
+            POSMain.radioButtons.add(radioButton);
             varieties.getChildren().add(radioButton);
-
         }
 
         return varieties;
