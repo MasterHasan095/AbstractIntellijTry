@@ -62,7 +62,7 @@ public class minorPaneButton extends POSMain{
             comboBox1.getItems().add(value);
             comboBox1.setValue(optionName);
         }
-
+        POSMain.comboBoxes.add(comboBox1);
         return comboBox1;
     }
 

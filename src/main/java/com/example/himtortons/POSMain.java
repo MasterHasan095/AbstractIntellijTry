@@ -30,11 +30,11 @@ public class POSMain extends Application {
 
 //Ye dekhte hai kya hai
     protected static List<Button> menuButtons = new ArrayList<>();
+    protected String check = null;
 
     private List<Pane> menuPanes = new ArrayList<>();
     protected static List<RadioButton> radioButtons = new ArrayList<>();
-    private ArrayList listOf1s = new ArrayList<>();
-    private ArrayList listOf2s = new ArrayList<>();
+protected static List<ComboBox> comboBoxes = new ArrayList<>();
     static Map<String, Integer> dictionary = new HashMap<>();
     ScrollPane menuListIndividual = new ScrollPane();
 
@@ -59,7 +59,7 @@ public class POSMain extends Application {
                 Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
                 try {
                     List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
-
+                    check = "null";
                     if (!(tempList.size() == 2)) {
 
                     }else{
@@ -69,10 +69,13 @@ public class POSMain extends Application {
                             Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
                             minorMenuPane.getChildren().add(Varieties);
                             radioButtons.get(0).setSelected(true);
+                            check = "radio";
+
                         }else if (tempList.get(0).equals(2)){
 
                             Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
                             minorMenuPane.getChildren().add(Varieties);
+                            check = "combo";
                         }
                     }
                     System.out.println("Latest CheckPoint");
@@ -90,18 +93,33 @@ public class POSMain extends Application {
                         Label price = (Label) tempGridPane.getChildren().get(1);
                         Label calories = (Label) tempGridPane.getChildren().get(2);
                         String variety = null;
-                        for(RadioButton option : radioButtons){
-                            if(option.isSelected()){
-                                variety = option.getText();
-                            }
-                        }
-                        String receiptLine = variety + " "+ name.getText() + " : " + price.getText();
-                        System.out.println(receiptLine);
-                        System.out.println(radioButtons);
+                        String receiptLine = null;
+                        switch (check){
+                            case "radio":
+                                for(RadioButton option : radioButtons){
+                                    if(option.isSelected()){
+                                        variety = option.getText();
+                                    }
+                                }
+                                receiptLine = variety + " "+ name.getText() + " : " + price.getText();
 
-//                        System.out.println(name.getText());
-//                        System.out.println(tempGridPane);
-//                        System.out.println("Checkpoint");
+                                break;
+                            case "combo":
+                                System.out.println("We solve combo here");
+                                String miniVariety = "\n";
+                                for(ComboBox option : comboBoxes){
+                                    miniVariety += option.getSelectionModel().getSelectedItem() + " ";
+                                }
+                                receiptLine = name.getText() + " : " + price.getText() + miniVariety;
+                                break;
+                            default:
+                                receiptLine = name.getText() + " : " + price.getText();
+                        }
+                        System.out.println(receiptLine);
+
+
+
+
                     });
 
                 }
