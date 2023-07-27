@@ -4,64 +4,153 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class POSMain extends Application {
-    private List<Button> menuButtons = new ArrayList<>();
-    private List<Pane> menuPanes = new ArrayList<>();
-    private List<RadioButton> radioButtons = new ArrayList<>();
-    private ArrayList listOf1s = new ArrayList<>();
-    Map<String, Integer> dictionary = new HashMap<>();
 
-    HBox sizes = new HBox();
-    ScrollPane hBoxScrollPane = new ScrollPane(sizes);
+    //Creating the initial Pane
+    AnchorPane primaryPane = new AnchorPane();
+
+    //4 major Panes
+    ScrollPane majorMenuPane = new ScrollPane();
+    VBox minorMenuPane = new VBox();
+    ScrollPane orderPane = new ScrollPane();
+    GridPane orderGrid = new GridPane();
+
+
+//Ye dekhte hai kya hai
+    protected static List<Button> menuButtons = new ArrayList<>();
+    protected String check = null;
+
+    private List<Pane> menuPanes = new ArrayList<>();
+    protected static List<RadioButton> radioButtons = new ArrayList<>();
+protected static List<ComboBox> comboBoxes = new ArrayList<>();
+    static Map<String, Integer> dictionary = new HashMap<>();
+    ScrollPane menuListIndividual = new ScrollPane();
+
+    ScrollPane Varieties = new ScrollPane();
+    static HBox varieties = new HBox();
+    ScrollPane hBoxScrollPane = new ScrollPane(varieties);
 
     private boolean sizesAdded = false;
+    private boolean varietiesAdded = false;
 
 
     @Override
     public void start(Stage stage) throws Exception {
+        //Calling required method
+        locationSet(); //Sets the location of all the Elements
+
+        //Left Pane Button Creation
+        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt")));
+        for (Button button : menuButtons) {
+            button.setOnAction(e->{
+                minorMenuPane.getChildren().clear();
+                Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
+                try {
+                    List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
+                    check = "null";
+                    if (!(tempList.size() == 2)) {
+
+                    }else{
+
+                        if (tempList.get(0).equals(1)){
+
+                            Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
+                            minorMenuPane.getChildren().add(Varieties);
+                            radioButtons.get(0).setSelected(true);
+                            check = "radio";
+
+                        }else if (tempList.get(0).equals(2)){
+
+                            Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
+                            minorMenuPane.getChildren().add(Varieties);
+                            check = "combo";
+                        }
+                    }
+                    System.out.println("Latest CheckPoint");
+                    menuListIndividual.setContent(individualElements.menuListIndividual(buttonIndex,
+                            new File("menuHimTortons.txt")));
+                    minorMenuPane.getChildren().add(menuListIndividual);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                //createUpperMinor();
+                for(Button innerButton:individualElements.finalButtons){
+                    innerButton.setOnAction(Event->{
+                        GridPane tempGridPane = (GridPane) innerButton.getGraphic();
+                        Label name = (Label) tempGridPane.getChildren().get(0);
+                        Label price = (Label) tempGridPane.getChildren().get(1);
+                        Label calories = (Label) tempGridPane.getChildren().get(2);
+                        String variety = null;
+                        String receiptLine = null;
+                        switch (check){
+                            case "radio":
+                                for(RadioButton option : radioButtons){
+                                    if(option.isSelected()){
+                                        variety = option.getText();
+                                    }
+                                }
+                                receiptLine = variety + " "+ name.getText() + " : " + price.getText();
+
+                                break;
+                            case "combo":
+                                System.out.println("We solve combo here");
+                                String miniVariety = "\n";
+                                for(ComboBox option : comboBoxes){
+                                    miniVariety += option.getSelectionModel().getSelectedItem() + " ";
+                                }
+                                receiptLine = name.getText() + " : " + price.getText() + miniVariety;
+                                break;
+                            default:
+                                receiptLine = name.getText() + " : " + price.getText();
+                        }
+                        System.out.println(receiptLine);
 
 
-        //Setting All Panes
 
-        AnchorPane primaryPane = new AnchorPane();
-        primaryPane.getStylesheets().add(getClass().getResource("/com/example/himtortons/styles.css").toExternalForm());
-        ScrollPane majorMenuPane = new ScrollPane();
-        VBox majorMenuVBox = new VBox();
-        majorMenuVBox.setSpacing(10);
-        majorMenuVBox.setPadding(new Insets(0,0,0,25));
-        majorMenuVBox.setAlignment(Pos.CENTER);
-        majorMenuPane.setContent(majorMenuVBox);
-        VBox minorMenuPane = new VBox();
+
+                    });
+
+                }
+            });
+        }
+
+
         hBoxScrollPane.getStyleClass().add("scroll-pane");
-        sizes.setSpacing(10);
-        sizes.setPadding(new Insets(0,0,0,10));
-        sizes.setAlignment(Pos.CENTER);
-        minorMenuPane.setStyle("-fx-background-color:purple");
-        ScrollPane orderPane = new ScrollPane();
-        orderPane.setStyle("-fx-background-color:red");
-        GridPane orderGrid = new GridPane();
-        orderGrid.setStyle("-fx-background-color:green");
+
+        varieties.setSpacing(10);
+        varieties.setPadding(new Insets(0,0,0,10));
+        varieties.setAlignment(Pos.CENTER);
+
         primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,orderPane,orderGrid);
-        AnchorPane.setTopAnchor(majorMenuPane, 0.0);    //
+
+        Scene scene = new Scene(primaryPane,1400,800);
+        String cssFile = getClass().getResource("styles.css").toExternalForm();
+        scene.getStylesheets().add(cssFile);
+        stage.setTitle("POS");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void locationSet(){ //Sets all pane location
+        AnchorPane.setTopAnchor(majorMenuPane, 0.0);
         AnchorPane.setLeftAnchor(majorMenuPane, 0.0);
         majorMenuPane.setPrefHeight(800);
         majorMenuPane.setPrefWidth(300);
+        AnchorPane.setTopAnchor(minorMenuPane,0.0);
+        AnchorPane.setLeftAnchor(minorMenuPane,300.0);
+        minorMenuPane.setPrefHeight(800);
+        minorMenuPane.setPrefWidth(800);
         AnchorPane.setTopAnchor(orderPane,0.0);
         AnchorPane.setRightAnchor(orderPane,0.0);
         orderPane.setPrefHeight(400);
@@ -70,94 +159,52 @@ public class POSMain extends Application {
         AnchorPane.setRightAnchor(orderGrid,0.0);
         orderGrid.setPrefHeight(400);
         orderGrid.setPrefWidth(300);
-        AnchorPane.setTopAnchor(minorMenuPane,0.0);
-        AnchorPane.setLeftAnchor(minorMenuPane,300.0);
-        minorMenuPane.setPrefHeight(800);
-        minorMenuPane.setPrefWidth(800);
 
-
-        //All initial Panes Set
-
-        //File Creation
-        File menuFile = new File("menuHimTortons.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(menuFile))) {
-            String line = br.readLine();
-            String[] values = line.split(",");
-            System.out.println(line);
-            System.out.println(values.length);
-            for (int i = 0; i < values.length; i++) {
-                Button button = new Button(values[i]);
-                FlowPane menuPane = new FlowPane();
-                dictionary.put(values[i],i+1);
-                button.getStyleClass().add("button-style"); // Apply the CSS class
-                menuButtons.add(button); // Add the button to the list
-                menuPanes.add(menuPane);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        majorMenuVBox.getChildren().addAll(menuButtons);
-
-
-
-        try (BufferedReader br = new BufferedReader(new FileReader(menuFile))) {
-            String line = "";
-            while (line!=null){
-
-                String[] splitLine = line.split(",");
-                List<Object> values = new ArrayList<>();
-                for(String splitValue : splitLine){
-                    try {
-                        Integer intValue = Integer.parseInt(splitValue);
-                        values.add(intValue);
-                    }catch (NumberFormatException e){
-                        values.add(splitValue);
-                    }
-                }
-                if (values.get(0).equals("restart")) {
-                    System.out.println(values.get(2));
-                    if (values.get(2).equals(1)) {
-                        listOf1s.add(values.get(1));
-                        if (!sizesAdded) {
-                            String[] sizeOptions = ((String) values.get(3)).split(":");
-                            ToggleGroup sizesRadio = new ToggleGroup();
-                            for (String option : sizeOptions) {
-                                RadioButton radioButton = new RadioButton();
-                                radioButton.setText(option);
-                                radioButton.setToggleGroup(sizesRadio);
-                                radioButton.getStyleClass().add("radio-button");
-                                sizes.getChildren().add(radioButton);
-                            }
-                            sizesAdded = true;
-                        }
-                    }
-                } line = br.readLine();
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        for (Button button : menuButtons) {
-            button.setOnAction(e->{
-                minorMenuPane.getChildren().clear();
-                System.out.println(dictionary.get(button.getText()));
-                if(listOf1s.contains(dictionary.get(button.getText()))){
-                    System.out.println("working");
-                    minorMenuPane.getChildren().add(hBoxScrollPane);
-                }
-
-            });
-        }
-        Scene scene = new Scene(primaryPane,1400,800);
-        stage.setTitle("POS");
-        stage.setScene(scene);
-        stage.show();
+        minorMenuPane.setStyle("-fx-background-color:purple");
+        orderPane.setStyle("-fx-background-color:red");
+        orderGrid.setStyle("-fx-background-color:green");
     }
+
+
+    public List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
+        List<Object> restartIndexList = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(menuFile));
+        String line = "";
+        while (line!=null){
+
+            String[] splitLine = line.split(",");
+            List<Object> values = new ArrayList<>();
+            for(String splitValue : splitLine){
+                try {
+                    Integer intValue = Integer.parseInt(splitValue);
+                    values.add(intValue);
+                }catch (NumberFormatException e){
+                    values.add(splitValue);
+                }
+            }
+            if(values.get(0).equals("restart")){
+                if (values.get(1).equals(buttonIndex)){
+                    restartIndexList.add((Integer) values.get(2));
+                    if (!values.get(2).equals(0)){
+                    restartIndexList.add(values.get(3));
+                    }
+                }
+            }
+            line = br.readLine();
+        }return restartIndexList;
+    }
+
+
 
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
+
 }
+
+//Button action event set
+
+
