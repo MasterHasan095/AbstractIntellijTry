@@ -77,8 +77,13 @@ fx-font-size: 25px;
 }
 .grid-button{
 -fx-pref-width:99px;
--fx-pref-height:99px;
+-fx-pref-height:75px;
 }
+.discount_button{
+-fx-pref-width:295px;
+-fx-pref-height:75px;
+}
+
 .lower-buttons{
 -fx-pref-width:149px;
 -fx-pref-height:99px;

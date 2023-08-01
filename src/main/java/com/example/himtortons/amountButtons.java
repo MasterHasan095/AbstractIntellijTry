@@ -42,11 +42,19 @@ public class amountButtons {
     }
 
 
+    static Button discount = new Button("Discount");
     static Button cash = new Button("CASH");
     static Button card = new Button("CARD");
 
+    public static Button discountButton(){
+        discount.getStyleClass().add("discount_button");
+        return discount;
+    }
+
+
     public static HBox cashAndCard(){
         HBox newHbox = new HBox();
+
         card.getStyleClass().add("lower-buttons");
         cash.getStyleClass().add("lower-buttons");
         newHbox.getChildren().addAll(cash,card);

@@ -117,7 +117,7 @@ public class POSMain extends Application {
         orderGridArea.setPrefHeight(400);
         orderGridArea.setPrefWidth(300);
         amountButtons.makeGrid();
-        orderGridArea.getChildren().addAll(orderGrid,amountButtons.cashAndCard());
+        orderGridArea.getChildren().addAll(orderGrid,amountButtons.discountButton(),amountButtons.cashAndCard());
 
 
         orderGrid.setStyle("-fx-background-color:green");
