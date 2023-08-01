@@ -49,7 +49,7 @@ fx-font-size: 25px;
 
 /* Set the width of the columns */
 .name {
-    -fx-pref-width: 650px;
+    -fx-pref-width: 675px;
     -fx-pref-height: 50px;
     -fx-background-color: #336699; /* Set the background color */
     -fx-text-fill: white;
@@ -82,4 +82,8 @@ fx-font-size: 25px;
 .lower-buttons{
 -fx-pref-width:149px;
 -fx-pref-height:99px;
+}
+.receipt-button{
+-fx-pref-width:295px;
+-fx-pref-height:50px;
 }

@@ -73,7 +73,6 @@ public class POSMain extends Application {
                     innerButton.setOnAction(Event->{
                         receiptGeneration.ButtonListGeneration(forActionEvents.forCartText(innerButton));
                         orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
-                        System.out.println("Checkpoint Initial \n" + removeFromCartButtons);
                     });
 
                 }
@@ -81,16 +80,7 @@ public class POSMain extends Application {
         }
 
 
-        for (Button button : removeFromCartButtons){
-            System.out.println("Checkpoint 1");
-            button.setOnAction(e->{
-                System.out.println("Checkpoint 2");
-                removeFromCartButtons.remove(button);
-                System.out.println(removeFromCartButtons);
-                orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
 
-            });
-        }
         orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
 
 

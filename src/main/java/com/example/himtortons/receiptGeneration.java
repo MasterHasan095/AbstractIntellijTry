@@ -17,13 +17,12 @@ public class receiptGeneration {
         receipt.getChildren().clear();
         for (Button button : buttonList){
             button.setOnAction(e->{
-                System.out.println("Checkpoint 2");
                 POSMain.removeFromCartButtons.remove(button);
-                System.out.println(POSMain.removeFromCartButtons);
                 POSMain.orderPane.setContent(receiptGeneration.receiptGenerated(POSMain.removeFromCartButtons));
 
             });
             receipt.getChildren().add(button);
+            button.getStyleClass().add("receipt-button");
         }
         return receipt;
     };
