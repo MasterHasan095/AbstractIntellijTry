@@ -11,27 +11,34 @@ import java.util.List;
 
 public class individualElements {
     protected static List<Button> finalButtons = new ArrayList<>();
+    //List of final buttons
     public static VBox menuListIndividual(Integer buttonIndex, File menuFile) throws IOException {
+
         VBox vbox = new VBox();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
         String line ;
         System.out.println("File reading succesfull");
         while((line = br.readLine()) != null){
-            String[] Systumm = line.split(",");
+            String[] eachLine = line.split(",");//Seperates each line cuz we need to get details for each item
             try{
-                if(Integer.parseInt(Systumm[0]) == buttonIndex){
-                    Button newButton = new Button();
+                if(Integer.parseInt(eachLine[0]) == buttonIndex){//Only works for that major area
+                    Button newButton = new Button();//Buttons to be added in our final buttons
                     GridPane tempGrid = new GridPane();
-                    Label name = new Label(Systumm[1]);
-                    Label price = new Label(Systumm[2]);
+                    tempGrid.getStyleClass().add("grid_pane");
+                    Label name = new Label(eachLine[1]);
+                    name.getStyleClass().add("name");
+                    Label price = new Label(eachLine[2]);
+                    price.getStyleClass().add("price");
+                    tempGrid.add(name,0,0);
+                    tempGrid.add(price,1,0);
                     try{
-                        Label calories = new Label(Systumm[3]);
+                        Label calories = new Label(eachLine[3]);
+                        calories.getStyleClass().add("calories");
                         tempGrid.add(calories,2,0);}
                     catch(Exception e){
 
                     }
-                    tempGrid.add(name,0,0);
-                    tempGrid.add(price,1,0);
+
                     newButton.setGraphic(tempGrid);
                     finalButtons.add(newButton);
                     vbox.getChildren().add(newButton);

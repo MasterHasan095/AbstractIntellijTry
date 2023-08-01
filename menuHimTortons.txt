@@ -24,7 +24,7 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Peach Quenchers,3.09,152
 2,Classic Lemonade Quenchers,2.69,113
 2,Original Cold Brew,3.49,0
-2,Vanilla Crea, Cold Brew,4.59,161
+2,Vanilla Creamy Cold Brew,4.59,161
 2,Original Iced Capp,4.09,315
 2,Mocha Iced Capp,4.99,500
 2,Caramel Iced Capp,4.93,504
@@ -51,7 +51,7 @@ restart,4,1,Apple Fritter Donut:Boston Cream Donut:Chocolate Dip Donut:Vanilla D
 4,1 Donut,1.79,240-330
 4,6 Assorted Donuts,8.69,2160
 4,12 Assorted Donuts,16.09,4320
-4,1 Timbit.0.39,50-80
+4,1 Timbit,0.39,50-80
 4,10 Assorted Timbits,3.49,1000
 4,20 Assorted Timbits,5.79,2000
 4,50 Assorted Timbits,11.49,5000

@@ -1,5 +1,7 @@
-package com.example.himtortons;
+package com.example.himtortons; //PACKAGE
 
+
+//IMPORTING STUFF
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,27 +21,35 @@ import java.util.Map;
 
 public class POSMain extends Application {
 
+
     //Creating the initial Pane
-    AnchorPane primaryPane = new AnchorPane();
+    AnchorPane primaryPane = new AnchorPane(); //Basically the whole scene
 
     //4 major Panes
     ScrollPane majorMenuPane = new ScrollPane();
     static VBox minorMenuPane = new VBox();
     static ScrollPane orderPane = new ScrollPane();
+    static VBox orderGridArea = new VBox();
     static GridPane orderGrid = new GridPane();
+    //4 Major Panes ends
 
 
-    //Ye dekhte hai kya hai
+    //List of buttons to create onClick
     protected static List<Button> menuButtons = new ArrayList<>();
     protected static List<Button> removeFromCartButtons = new ArrayList<>();
-    protected static String check = null;
 
-    private List<Pane> menuPanes = new ArrayList<>();
+    //List of buttons to create onClick ends
+
+    //Top area of middle pane
     protected static List<RadioButton> radioButtons = new ArrayList<>();
     protected static List<ComboBox> comboBoxes = new ArrayList<>();
+    protected static String check = null; // Used to check radio box or combobox
+
+    //Top area of middle pane ends
+
+    //Dictionary is a hashmap, but named dictionary because our first language was python
     static Map<String, Integer> dictionary = new HashMap<>();
     static ScrollPane menuListIndividual = new ScrollPane();
-
     static ScrollPane Varieties = new ScrollPane();
     static HBox varieties = new HBox();
     ScrollPane hBoxScrollPane = new ScrollPane(varieties);
@@ -52,9 +62,11 @@ public class POSMain extends Application {
         locationSet(); //Sets the location of all the Elements
 
         //Left Pane Button Creation
-        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt")));
-        for (Button button : menuButtons) {
-            button.setOnAction(e->{
+        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt"))); //Setting
+        // the content as a VBox which contains a list of all the majorMenuButtons.
+        for (Button button : menuButtons) { //Iterates through each button in the menu button we created in the
+            // button Creation class.
+            button.setOnAction(e->{ // We create an on action event for all the major menu pane buttons.
                 forActionEvents.onClickingMajorButtons(button);
                 //createUpperMinor();
                 for(Button innerButton:individualElements.finalButtons){
@@ -88,7 +100,7 @@ public class POSMain extends Application {
         varieties.setPadding(new Insets(0,0,0,10));
         varieties.setAlignment(Pos.CENTER);
 
-        primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,orderPane,orderGrid);
+        primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,orderPane,orderGridArea);
 
         Scene scene = new Scene(primaryPane,1400,800);
         String cssFile = getClass().getResource("styles.css").toExternalForm();
@@ -110,44 +122,19 @@ public class POSMain extends Application {
         AnchorPane.setRightAnchor(orderPane,0.0);
         orderPane.setPrefHeight(400);
         orderPane.setPrefWidth(300);
-        AnchorPane.setBottomAnchor(orderGrid,0.0);
-        AnchorPane.setRightAnchor(orderGrid,0.0);
-        orderGrid.setPrefHeight(400);
-        orderGrid.setPrefWidth(300);
+        AnchorPane.setBottomAnchor(orderGridArea,0.0);
+        AnchorPane.setRightAnchor(orderGridArea,0.0);
+        orderGridArea.setPrefHeight(400);
+        orderGridArea.setPrefWidth(300);
         amountButtons.makeGrid();
+        orderGridArea.getChildren().addAll(orderGrid,amountButtons.cashAndCard());
 
 
         orderGrid.setStyle("-fx-background-color:green");
     }
 
 
-    public static List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
-        List<Object> restartIndexList = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(menuFile));
-        String line = "";
-        while (line!=null){
 
-            String[] splitLine = line.split(",");
-            List<Object> values = new ArrayList<>();
-            for(String splitValue : splitLine){
-                try {
-                    Integer intValue = Integer.parseInt(splitValue);
-                    values.add(intValue);
-                }catch (NumberFormatException e){
-                    values.add(splitValue);
-                }
-            }
-            if(values.get(0).equals("restart")){
-                if (values.get(1).equals(buttonIndex)){
-                    restartIndexList.add((Integer) values.get(2));
-                    if (!values.get(2).equals(0)){
-                        restartIndexList.add(values.get(3));
-                    }
-                }
-            }
-            line = br.readLine();
-        }return restartIndexList;
-    }
 
 
 
