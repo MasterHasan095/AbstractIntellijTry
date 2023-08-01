@@ -76,8 +76,7 @@ public class forActionEvents {
         }
     }
 
-    public static List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException { // To
-        // check the type after restart is encountered.
+    public static List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException { // To// check the type after restart is encountered.
         List<Object> restartList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
         String line = "";

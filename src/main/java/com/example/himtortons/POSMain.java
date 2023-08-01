@@ -28,6 +28,8 @@ public class POSMain extends Application {
     //4 major Panes
     ScrollPane majorMenuPane = new ScrollPane();
     static VBox minorMenuPane = new VBox();
+    static VBox toprightOrderPane = new VBox();
+
     static ScrollPane orderPane = new ScrollPane();
     static VBox orderGridArea = new VBox();
     static GridPane orderGrid = new GridPane();
@@ -54,6 +56,14 @@ public class POSMain extends Application {
     static HBox varieties = new HBox();
     ScrollPane hBoxScrollPane = new ScrollPane(varieties);
 
+    //Total cost variable
+    protected static double instanceAmount = 0;
+    static Label amountLabel = new Label();
+
+    //Hashmap which stores name and price
+
+    protected static HashMap<String, Double> nameAndPrice = new HashMap<>();
+
 
 
     @Override
@@ -71,6 +81,13 @@ public class POSMain extends Application {
                 //createUpperMinor();
                 for(Button innerButton:individualElements.finalButtons){
                     innerButton.setOnAction(Event->{
+                        System.out.println("We are at this button");
+                        GridPane tempGrid = (GridPane) innerButton.getGraphic();
+                        Label lbl = (Label) tempGrid.getChildren().get(1);
+                        instanceAmount += Double.parseDouble(lbl.getText());
+                        System.out.println(instanceAmount);
+                        amountLabel.setText("Total : " + instanceAmount);
+                        nameAndPrice.put(forActionEvents.forCartText(innerButton),Double.parseDouble(lbl.getText()));
                         receiptGeneration.ButtonListGeneration(forActionEvents.forCartText(innerButton));
                         orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
                     });
@@ -90,7 +107,7 @@ public class POSMain extends Application {
         varieties.setPadding(new Insets(0,0,0,10));
         varieties.setAlignment(Pos.CENTER);
 
-        primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,orderPane,orderGridArea);
+        primaryPane.getChildren().addAll(majorMenuPane,minorMenuPane,toprightOrderPane,orderGridArea);
 
         Scene scene = new Scene(primaryPane,1400,800);
         String cssFile = getClass().getResource("styles.css").toExternalForm();
@@ -108,16 +125,23 @@ public class POSMain extends Application {
         AnchorPane.setLeftAnchor(minorMenuPane,300.0);
         minorMenuPane.setPrefHeight(800);
         minorMenuPane.setPrefWidth(800);
-        AnchorPane.setTopAnchor(orderPane,0.0);
-        AnchorPane.setRightAnchor(orderPane,0.0);
-        orderPane.setPrefHeight(400);
-        orderPane.setPrefWidth(300);
+        AnchorPane.setTopAnchor(toprightOrderPane,0.0);
+        AnchorPane.setRightAnchor(toprightOrderPane,0.0);
+        toprightOrderPane.setPrefHeight(400);
+        toprightOrderPane.setPrefWidth(300);
+        orderPane.setPrefHeight(350);
+        amountLabel.setPrefHeight(50);
+        amountLabel.setPrefWidth(300);
+        amountLabel.setText("Total : " + instanceAmount);
+        toprightOrderPane.getChildren().addAll(orderPane,amountLabel);
         AnchorPane.setBottomAnchor(orderGridArea,0.0);
         AnchorPane.setRightAnchor(orderGridArea,0.0);
         orderGridArea.setPrefHeight(400);
         orderGridArea.setPrefWidth(300);
         amountButtons.makeGrid();
-        orderGridArea.getChildren().addAll(orderGrid,amountButtons.discountButton(),amountButtons.cashAndCard());
+        orderGridArea.getChildren().addAll(orderGrid,amountButtons.discountSet(),amountButtons.cashAndCard());
+        Varieties.setPrefHeight(100);
+        varieties.setPrefHeight(100);
 
 
         orderGrid.setStyle("-fx-background-color:green");

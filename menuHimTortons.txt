@@ -14,12 +14,7 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Iced Coffee,2.89,148
 2,Orange Ginger sparkling Quencher,3.79,110
 2,Blackberry Yuzu Sparkling Quencher,3.79,130
-2,Caramel Toffee Cold Brew,4.59,240
-2,Oreo Double Stuf Iced Capp,4.99,560
-2,Oreo Strawberry Creamy Chill,4.99,570
-2,Oreo Double Stuf Redeye Iced Capp,5.59,570
 2,Strawberry Frozen Lemonade,3.49,280
-2,Roasted Hazelnut Cold Brew,4.59,220
 2,Strawberry Watermelon Quenchers,3.09,147
 2,Peach Quenchers,3.09,152
 2,Classic Lemonade Quenchers,2.69,113
@@ -28,15 +23,6 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Original Iced Capp,4.09,315
 2,Mocha Iced Capp,4.99,500
 2,Caramel Iced Capp,4.93,504
-2,Vanilla Iced Capp,4.99,508
-2,vanilla Creamy Chill,4.99,516
-2,Iced Latte,4.09,140
-2,Iced Mocha Latte,4.69,200
-2,Iced Vanilla Latte,4.69,210
-2,Iced Caramel Latte,4.69,200
-2,Chocolate Creamy Chill,4.99,518
-2,Vanilla Creamy Chill,4.99,516
-2,Milk,4.09,150
 restart,3,2,Toasted:Spreads:Cheese:Meat:Vegetables:Heated
 Yes:No,Cream Cheese:Garlic Cream Cheese:Butter:Strawberry Jam:Peanut Butter:No,Cheddar Cheese:No,Bacon:No,Tomato:No,Yes:No
 3,Plain Bagel,2.29,290

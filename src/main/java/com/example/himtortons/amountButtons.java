@@ -42,13 +42,43 @@ public class amountButtons {
     }
 
 
-    static Button discount = new Button("Discount");
+    static Button discount5 = new Button("5%");
+    static Button discount10 = new Button("10%");
+    static Button discount20 = new Button("20%");
     static Button cash = new Button("CASH");
     static Button card = new Button("CARD");
 
-    public static Button discountButton(){
-        discount.getStyleClass().add("discount_button");
-        return discount;
+    public static HBox discountSet(){
+        discount5.getStyleClass().add("discount_button");
+        discount10.getStyleClass().add("discount_button");
+        discount20.getStyleClass().add("discount_button");
+        discount5.setOnAction(e->{
+            double discount = POSMain.instanceAmount*0.05;
+            POSMain.instanceAmount -= discount;
+            if(POSMain.instanceAmount <=0){
+                POSMain.instanceAmount = 0;
+            }
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+        });
+        discount10.setOnAction(e->{
+            double discount = POSMain.instanceAmount*0.1;
+            POSMain.instanceAmount -= discount;
+            if(POSMain.instanceAmount <=0){
+                POSMain.instanceAmount = 0;
+            }
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+        });
+        discount20.setOnAction(e->{
+            double discount = POSMain.instanceAmount*0.2;
+            POSMain.instanceAmount -= discount;
+            if(POSMain.instanceAmount <=0){
+                POSMain.instanceAmount = 0;
+            }
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+        });
+        HBox discountHBox = new HBox();
+        discountHBox.getChildren().addAll(discount5,discount10,discount20);
+        return discountHBox;
     }
 
 

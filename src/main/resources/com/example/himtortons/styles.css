@@ -1,8 +1,6 @@
 /* styles.css */
 .button-style {
     -fx-font-size: 25px;
-    -fx-background-color: #336699; /* Set the background color */
-    -fx-text-fill: white; /* Set the text color */
     -fx-padding: 10px 20px; /* Set the padding */
     -fx-min-width: 250px;
     -fx-max-width: 250px;
@@ -11,8 +9,7 @@
 }
 .radio-button{
 fx-font-size: 25px;
-    -fx-background-color: #336699; /* Set the background color */
-    -fx-text-fill: white; /* Set the text color */
+    /* Set the text color */
     -fx-padding: 10px 20px; /* Set the padding */
     -fx-min-width: 175;
     -fx-max-width: DOUBLE.MAX_VALUE;
@@ -21,15 +18,12 @@ fx-font-size: 25px;
 }
 .minor-label{
 -fx-font-size:25px;
--fx-text-fill: white;
 }
 
 .combo-button{
     -fx-min-height: 100;
     -fx-max-height: 100px;
     -fx-font-size:25px;
-    -fx-text-fill: white;
-    -fx-background-color: #336699;
 }
 
 
@@ -51,44 +45,31 @@ fx-font-size: 25px;
 .name {
     -fx-pref-width: 675px;
     -fx-pref-height: 50px;
-    -fx-background-color: #336699; /* Set the background color */
-    -fx-text-fill: white;
-    -fx-border-color: white; /* Set the border color */
-    -fx-border-width: 1px; /* Set the border width */
-
 }
 
 .price {
     -fx-pref-width: 50px;
     -fx-pref-height: 50px;
-    -fx-background-color: #336699; /* Set the background color */
-        -fx-text-fill: white;
-        -fx-border-color: white; /* Set the border color */
-    -fx-border-width: px; /* Set the border width */
 }
 
 .calories {
     -fx-pref-width: 50px;
     -fx-pref-height: 50px;
-    -fx-background-color: #336699; /* Set the background color */
-    -fx-text-fill: white;
-    -fx-border-color: white; /* Set the border color */
-    -fx-border-width: 1px; /* Set the border width */
 }
 .grid-button{
--fx-pref-width:99px;
+-fx-pref-width:100px;
 -fx-pref-height:75px;
 }
 .discount_button{
--fx-pref-width:295px;
+-fx-pref-width:100px;
 -fx-pref-height:75px;
 }
 
 .lower-buttons{
 -fx-pref-width:149px;
--fx-pref-height:99px;
+-fx-pref-height:100px;
 }
 .receipt-button{
--fx-pref-width:295px;
+-fx-pref-width:300px;
 -fx-pref-height:50px;
 }

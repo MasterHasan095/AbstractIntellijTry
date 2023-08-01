@@ -18,6 +18,11 @@ public class receiptGeneration {
         for (Button button : buttonList){
             button.setOnAction(e->{
                 POSMain.removeFromCartButtons.remove(button);
+                POSMain.instanceAmount -= POSMain.nameAndPrice.get(button.getText());
+                if(POSMain.instanceAmount <=0){
+                    POSMain.instanceAmount = 0;
+                }
+                POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
                 POSMain.orderPane.setContent(receiptGeneration.receiptGenerated(POSMain.removeFromCartButtons));
 
             });
