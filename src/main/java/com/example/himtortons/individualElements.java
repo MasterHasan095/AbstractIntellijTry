@@ -24,10 +24,14 @@ public class individualElements {
                     GridPane tempGrid = new GridPane();
                     Label name = new Label(Systumm[1]);
                     Label price = new Label(Systumm[2]);
-                    Label calories = new Label(Systumm[3]);
+                    try{
+                        Label calories = new Label(Systumm[3]);
+                        tempGrid.add(calories,2,0);}
+                    catch(Exception e){
+
+                    }
                     tempGrid.add(name,0,0);
                     tempGrid.add(price,1,0);
-                    tempGrid.add(calories,2,0);
                     newButton.setGraphic(tempGrid);
                     finalButtons.add(newButton);
                     vbox.getChildren().add(newButton);

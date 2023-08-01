@@ -38,7 +38,7 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Vanilla Creamy Chill,4.99,516
 2,Milk,4.09,150
 restart,3,2,Toasted:Spreads:Cheese:Meat:Vegetables:Heated
-Yes:No,Cream Cheese:Garlic Cream Cheese:Butter:Strawberry Jam:Peanut Butter,Cheddar Cheese,Bacon,Tomato,Yes:No
+Yes:No,Cream Cheese:Garlic Cream Cheese:Butter:Strawberry Jam:Peanut Butter:No,Cheddar Cheese:No,Bacon:No,Tomato:No,Yes:No
 3,Plain Bagel,2.29,290
 3,Everything Bagel,2.29,297
 3,12 Grain bagel,2.29,334

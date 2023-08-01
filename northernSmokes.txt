@@ -1,0 +1,76 @@
+Smoked Meats, Plates and Platters,Sandwiches,Starters,Special Orders,Sides,Drinks
+restart,1,0
+1,Angus Brisket,28
+1,Corned Beef Brisket,28
+1,Montreal-Style Smoked Brisket,30
+1,Beef Bacon (Uncooked),26
+1,Beef Back Ribs,24
+1,Beef Back Ribs - Rack,68
+1,Short Ribs,33
+1,Korean Short Ribs,27
+1,Tri Tip,25
+1,Jerk Chicken,17
+1,Peri Peri Chicken,17
+1,Chicken Wings,17
+1,Burnt Ends,35
+restart,2,2,sides 1:sides 2
+Fries:Mashed Potatoes:Jalapeno Corn:Scalloped Potatoes:Mac and Cheese:Creamy Coleslaw:Smoked Maple Beans:CornBread,Fries:Mashed Potatoes:Jalapeno Corn:Scalloped Potatoes:Mac and Cheese:Creamy Coleslaw:Smoked Maple Beans:CornBread
+2,Brisket Plate,26
+2,Beef Back Ribs Plate,34
+2,Short Ribs Plate,43
+2,Korean Short Ribs Plate - 1/2 lb,24
+2,Korean Short Ribs Plate - 1 lb,36
+2,Tri Tip Plate,24
+2,Jerk Quarter Chicken Plate,18
+2,Peri Peri Quarter Chicken Plate,18
+2,Sample Platter 1,88
+2,Sample Platter 2,92
+2,Sample Platter 3,90
+2,All Meat Platter, 140
+2,Family Platter 1,165
+2,Family Platter 2,300
+restart,3,2,Cheese:Caramelized Onions:Coleslaw:Bacon:Sirloin patty:Brisket
+Yes:No,Yes:No,Yes:No,Yes:No,Yes:No,Yes:No
+3,Pulled Brisket Sandwich,9.75
+3,Apple Chipotle Sandwich,9.75
+3,Corned Beef Sandwich,10
+3,Corned Beef Sandwich on Rye,13
+3,Montreal Style Smoked Sandwich,10
+3,Montreal Style Smoked Sandwich on Rye,13
+3,Sirloin Burger,9.75
+3,Jr. Burger,6
+3,BLT,9.75
+3,The Big Burger,18
+3,Jerk Chicken Sandwich,9.75
+3,Tandoori Chicken Sandwich,9.75
+3,Sausage On A Bun,6
+restart,4,0
+4,Smoked Brisket Chilli,12.50
+4,Brisket Mac and Cheese,14.50
+4,Jerk Chicken Mac and Cheese,14.50
+4,Bacon Mac and Cheese,14.50
+4,Brisket Poutine,14.50
+4,Jerk Chicken Poutine,14.50
+4,Bacon Poutine,14.50
+4,Poutine,9.50
+4,Chilli Cheese Fries,14.50
+4,Cheesy Fries,9.50
+4,Jalapeno Poppers,13.50
+restart,5,0
+5,Turkey - 25 per lb,0
+5,Lamb Leg - 25 per lb,0
+restart,6,1,Small:Medium:Large
+6,French Fries,6
+6,Mashed Potatoes,6
+6,Scalloped Potatoes,6
+6,Mac and Cheese,6
+6,Creamy Coleslaw,6
+6,Jalapeno Corn,6
+6,Smoked Maple Beans,6
+6,CornBread,6
+6,House BBQ Sauce,3
+6,Smoked Gravy,6
+restart,7,0
+7,Water,1.50
+7,Cans,2.00
+7,Bottled Drinks,3.25

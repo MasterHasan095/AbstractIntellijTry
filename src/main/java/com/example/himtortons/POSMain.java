@@ -3,6 +3,7 @@ package com.example.himtortons;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -23,27 +24,26 @@ public class POSMain extends Application {
 
     //4 major Panes
     ScrollPane majorMenuPane = new ScrollPane();
-    VBox minorMenuPane = new VBox();
-    ScrollPane orderPane = new ScrollPane();
-    GridPane orderGrid = new GridPane();
+    static VBox minorMenuPane = new VBox();
+    static ScrollPane orderPane = new ScrollPane();
+    static GridPane orderGrid = new GridPane();
 
 
-//Ye dekhte hai kya hai
+    //Ye dekhte hai kya hai
     protected static List<Button> menuButtons = new ArrayList<>();
-    protected String check = null;
+    protected static List<Button> removeFromCartButtons = new ArrayList<>();
+    protected static String check = null;
 
     private List<Pane> menuPanes = new ArrayList<>();
     protected static List<RadioButton> radioButtons = new ArrayList<>();
-protected static List<ComboBox> comboBoxes = new ArrayList<>();
+    protected static List<ComboBox> comboBoxes = new ArrayList<>();
     static Map<String, Integer> dictionary = new HashMap<>();
-    ScrollPane menuListIndividual = new ScrollPane();
+    static ScrollPane menuListIndividual = new ScrollPane();
 
-    ScrollPane Varieties = new ScrollPane();
+    static ScrollPane Varieties = new ScrollPane();
     static HBox varieties = new HBox();
     ScrollPane hBoxScrollPane = new ScrollPane(varieties);
 
-    private boolean sizesAdded = false;
-    private boolean varietiesAdded = false;
 
 
     @Override
@@ -55,76 +55,31 @@ protected static List<ComboBox> comboBoxes = new ArrayList<>();
         majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt")));
         for (Button button : menuButtons) {
             button.setOnAction(e->{
-                minorMenuPane.getChildren().clear();
-                Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText());
-                try {
-                    List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex);
-                    check = "null";
-                    if (!(tempList.size() == 2)) {
-
-                    }else{
-
-                        if (tempList.get(0).equals(1)){
-
-                            Varieties.setContent(minorPaneButton.returnRadioBoxSet(tempList));
-                            minorMenuPane.getChildren().add(Varieties);
-                            radioButtons.get(0).setSelected(true);
-                            check = "radio";
-
-                        }else if (tempList.get(0).equals(2)){
-
-                            Varieties.setContent(minorPaneButton.returnComboBoxSet(tempList,buttonIndex));
-                            minorMenuPane.getChildren().add(Varieties);
-                            check = "combo";
-                        }
-                    }
-                    System.out.println("Latest CheckPoint");
-                    menuListIndividual.setContent(individualElements.menuListIndividual(buttonIndex,
-                            new File("menuHimTortons.txt")));
-                    minorMenuPane.getChildren().add(menuListIndividual);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                forActionEvents.onClickingMajorButtons(button);
                 //createUpperMinor();
                 for(Button innerButton:individualElements.finalButtons){
                     innerButton.setOnAction(Event->{
-                        GridPane tempGridPane = (GridPane) innerButton.getGraphic();
-                        Label name = (Label) tempGridPane.getChildren().get(0);
-                        Label price = (Label) tempGridPane.getChildren().get(1);
-                        Label calories = (Label) tempGridPane.getChildren().get(2);
-                        String variety = null;
-                        String receiptLine = null;
-                        switch (check){
-                            case "radio":
-                                for(RadioButton option : radioButtons){
-                                    if(option.isSelected()){
-                                        variety = option.getText();
-                                    }
-                                }
-                                receiptLine = variety + " "+ name.getText() + " : " + price.getText();
-
-                                break;
-                            case "combo":
-                                System.out.println("We solve combo here");
-                                String miniVariety = "\n";
-                                for(ComboBox option : comboBoxes){
-                                    miniVariety += option.getSelectionModel().getSelectedItem() + " ";
-                                }
-                                receiptLine = name.getText() + " : " + price.getText() + miniVariety;
-                                break;
-                            default:
-                                receiptLine = name.getText() + " : " + price.getText();
-                        }
-                        System.out.println(receiptLine);
-
-
-
-
+                        receiptGeneration.ButtonListGeneration(forActionEvents.forCartText(innerButton));
+                        orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
+                        System.out.println("Checkpoint Initial \n" + removeFromCartButtons);
                     });
 
                 }
             });
         }
+
+
+        for (Button button : removeFromCartButtons){
+            System.out.println("Checkpoint 1");
+            button.setOnAction(e->{
+                System.out.println("Checkpoint 2");
+                removeFromCartButtons.remove(button);
+                System.out.println(removeFromCartButtons);
+                orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
+
+            });
+        }
+        orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));
 
 
         hBoxScrollPane.getStyleClass().add("scroll-pane");
@@ -159,14 +114,14 @@ protected static List<ComboBox> comboBoxes = new ArrayList<>();
         AnchorPane.setRightAnchor(orderGrid,0.0);
         orderGrid.setPrefHeight(400);
         orderGrid.setPrefWidth(300);
+        amountButtons.makeGrid();
 
-        minorMenuPane.setStyle("-fx-background-color:purple");
-        orderPane.setStyle("-fx-background-color:red");
+
         orderGrid.setStyle("-fx-background-color:green");
     }
 
 
-    public List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
+    public static List<Object> retrieveRestartType(File menuFile, Integer buttonIndex) throws IOException {
         List<Object> restartIndexList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(menuFile));
         String line = "";
@@ -186,7 +141,7 @@ protected static List<ComboBox> comboBoxes = new ArrayList<>();
                 if (values.get(1).equals(buttonIndex)){
                     restartIndexList.add((Integer) values.get(2));
                     if (!values.get(2).equals(0)){
-                    restartIndexList.add(values.get(3));
+                        restartIndexList.add(values.get(3));
                     }
                 }
             }
@@ -206,5 +161,3 @@ protected static List<ComboBox> comboBoxes = new ArrayList<>();
 }
 
 //Button action event set
-
-
