@@ -38,6 +38,7 @@ public class forActionEvents {
                     miniVariety += option.getSelectionModel().getSelectedItem() + " ";
                 }
                 receiptLine = name.getText() + " : " + price.getText() + miniVariety;
+
                 break;
             default:
                 receiptLine = name.getText() + " : " + price.getText();

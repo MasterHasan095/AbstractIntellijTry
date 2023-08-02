@@ -95,9 +95,12 @@ public class minorPaneButton {
                         String comboStuff = (String) values.get(3);
                         String[] postSplit = comboStuff.split(":");//Sub options
                         String lineNew = br.readLine();//Next line which contains sub of suboptions
+                        System.out.println(lineNew);
                         String[] minorMinorSplit = lineNew.split(",");//seperates the line and keeps e=sub option for
+                        System.out.println(minorMinorSplit);
                         // each sub option different
                         for(int i = 0;i<postSplit.length;i++){
+                            System.out.println("This is postsplit" + postSplit[i]);
                             hashMap.put(postSplit[i],minorMinorSplit[i]);//Adds to a hashmap, the sub-option and the
                             // list of sub options of sub options.
                         }

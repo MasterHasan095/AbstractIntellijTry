@@ -51,7 +51,7 @@ public class individualElements {
         }
 
         System.out.println("Method works");
-
+vbox.setSpacing(10);
 
         return vbox;
     }

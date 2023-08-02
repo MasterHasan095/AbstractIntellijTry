@@ -21,7 +21,7 @@ import java.util.List;
 public class finalReceipt {
     static VBox receipt = new VBox();
     static Stage newStage = new Stage();
-    static Scene newScene = new Scene(receipt, 300, 400);
+    static Scene newScene = new Scene(receipt, 300, 500);
     static Boolean tempCheck;
     public static void newWindow(List<Button> cartList,Double total,Double discountGiven) {
         receipt.getChildren().clear();
@@ -50,11 +50,12 @@ public class finalReceipt {
                 System.out.println("Exists now");
                 try {
                     BufferedWriter bw = new BufferedWriter(new FileWriter(orderHistory,true));
-                    bw.write("*****ORDER***** \n");
+                    bw.write("*****ORDER***** \n \n \n");
                     for (Button button : POSMain.removeFromCartButtons){
                         bw.write(button.getText() + "\n");
                     }
-                    bw.write("Total Amount : " + POSMain.instanceAmount);
+                    bw.write("Total Amount : " + POSMain.instanceAmount + "\n \n");
+
                     bw.close();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -79,23 +80,38 @@ public class finalReceipt {
         newStage.setTitle("Receipt");
         newStage.setScene(newScene);
         newStage.show();
+        receipt.getChildren().clear();
+        VBox vbox = new VBox();
         HBox hbox = new HBox();
         Label amountOfCashEnteredLabel = new Label("Amount of cash provided : ");
         amountOfCashEnteredLabel.setPrefWidth(150);
         TextField amountOfCashEntered = new TextField();
         amountOfCashEntered.setPrefWidth(150);
         Button calculate = new Button("Calculate");
-        hbox.getChildren().addAll(amountOfCashEnteredLabel,amountOfCashEntered,calculate);
-        receipt.getChildren().add(hbox);
+        hbox.getChildren().addAll(amountOfCashEnteredLabel,amountOfCashEntered);
+        vbox.getChildren().addAll(hbox,calculate);
+        receipt.getChildren().add(vbox);
         System.out.println(amountOfCashEntered.getText());
+        Label toReturnAmount = new Label();
         calculate.setOnAction(e->{
             System.out.println("This works");
-            Double toReturnValue = Double.parseDouble(amountOfCashEntered.getText()) - instanceAmount ;
-            Label toReturnAmount = new Label();
-            toReturnAmount.setText("Cash to be returned : " + String.valueOf(toReturnValue));
-            receipt.getChildren().add(toReturnAmount);
+
+            Double toReturnValue = 0.0;
+            VBox toStoreLabel = new VBox();
+
+
+                toReturnValue = Double.parseDouble(amountOfCashEntered.getText()) - instanceAmount;
+                if (!(toReturnValue <= 0 )){
+                    toStoreLabel.getChildren().clear();
+                    toReturnAmount.setText("Cash to be returned : " + String.valueOf(toReturnValue));
+
+                }else {
+                    toReturnAmount.setText("Less Amount Entered");
+                }
+            toStoreLabel.getChildren().add(toReturnAmount);
+            receipt.getChildren().add(toStoreLabel);
         });
-        Button done = new Button("Done");
+        Button done = new Button("Generate a Receipt");
         receipt.getChildren().add(done);
         done.setOnAction(e-> {
             finalReceipt.newWindow(POSMain.removeFromCartButtons, POSMain.instanceAmount, POSMain.discountAmount);

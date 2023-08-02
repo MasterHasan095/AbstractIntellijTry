@@ -1,5 +1,27 @@
 *****ORDER***** 
-Small Coffee Mocha : 2.69
-Small Speciality Tea : 2.19
-Small Brewed Coffee : 2.19
-Small Hot Chocolate : 2.69
+ 
+ 
+Total Amount : 0.0
+ 
+*****ORDER***** 
+ 
+ 
+Extra Large Orange Ginger sparkling Quencher : 3.79
+Extra Large Original Cold Brew : 3.49
+Extra Large Original Iced Capp : 4.09
+Plain Bagel : 2.29
+Toasted Spreads Cheese Meat Vegetables Heated Toasted Spreads Cheese Meat Vegetables Heated 
+12 Grain bagel : 2.29
+Toasted Spreads Cheese Meat Vegetables Heated Toasted Spreads Cheese Meat Vegetables Heated 
+Four Cheese bagel : 3.29
+Toasted Spreads Cheese Meat Vegetables Heated Toasted Spreads Cheese Meat Vegetables Heated 
+Total Amount : 19.24
+ 
+*****ORDER***** 
+ 
+ 
+Small Dark Roast Brewed Coffee : 2.19
+Small Steeped Tea : 2.19
+Small French vanilla : 3.29
+Total Amount : 7.67
+ 

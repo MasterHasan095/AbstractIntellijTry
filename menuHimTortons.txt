@@ -15,8 +15,6 @@ restart,2,1,Small:Medium:Large:Extra Large
 2,Orange Ginger sparkling Quencher,3.79,110
 2,Blackberry Yuzu Sparkling Quencher,3.79,130
 2,Strawberry Frozen Lemonade,3.49,280
-2,Strawberry Watermelon Quenchers,3.09,147
-2,Peach Quenchers,3.09,152
 2,Classic Lemonade Quenchers,2.69,113
 2,Original Cold Brew,3.49,0
 2,Vanilla Creamy Cold Brew,4.59,161
