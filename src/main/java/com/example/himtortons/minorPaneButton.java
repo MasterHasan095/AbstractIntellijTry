@@ -53,7 +53,7 @@ public class minorPaneButton {
 
     public static ComboBox<String> comboBoxCreation(Integer buttonIndex,String optionName) throws IOException {
         ComboBox<String> comboBox1 = new ComboBox<>();
-        HashMap<String,String> listOfComboBoxValues = retrieveComboBoxDropDown(new File("menuHimTortons.txt"),
+        HashMap<String,String> listOfComboBoxValues = retrieveComboBoxDropDown(new File(POSMain.filename),
                 buttonIndex);
 
         String[] finalComboBoxList = listOfComboBoxValues.get(optionName).split(":");//Differentiates the suboption

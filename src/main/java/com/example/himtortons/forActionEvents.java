@@ -18,7 +18,11 @@ public class forActionEvents {
         GridPane tempGridPane = (GridPane) innerButton.getGraphic();
         Label name = (Label) tempGridPane.getChildren().get(0);
         Label price = (Label) tempGridPane.getChildren().get(1);
-        Label calories = (Label) tempGridPane.getChildren().get(2);
+        try {
+            Label calories = (Label) tempGridPane.getChildren().get(2);
+        }catch (Exception e){
+
+        }
         String variety = null;
         String receiptLine = null;
         switch (POSMain.check){
@@ -52,7 +56,7 @@ public class forActionEvents {
         Integer buttonIndex = buttonCreation.retrieveButtonIndex(button.getText()); // Retrieves the index of the
         // button so that we can iterate further.
         try {
-            List<Object> tempList = retrieveRestartType(new File("menuHimTortons.txt"),buttonIndex); // To check for
+            List<Object> tempList = retrieveRestartType(new File(POSMain.filename),buttonIndex); // To check for
             // radiobox, combobox, or none
             POSMain.check = "null"; //check field is used further to see if it is radio or combobbox
             if ((tempList.size() == 2)) {//if length is 2, it is quite obvious that it has sub options.
@@ -70,7 +74,7 @@ public class forActionEvents {
             }
 
             POSMain.menuListIndividual.setContent(individualElements.menuListIndividual(buttonIndex,
-                    new File("menuHimTortons.txt")));
+                    new File(POSMain.filename)));
             POSMain.minorMenuPane.getChildren().add(POSMain.menuListIndividual);
         } catch (IOException ex) {
             throw new RuntimeException(ex);

@@ -60,6 +60,7 @@ public class POSMain extends Application {
     protected static double instanceAmount = 0;
     protected static double discountAmount = 0;
     static Label amountLabel = new Label();
+    public static String filename = "northernSmokes.txt";
 
     //Hashmap which stores name and price
 
@@ -69,11 +70,12 @@ public class POSMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         //Calling required method
         locationSet(); //Sets the location of all the Elements
 
         //Left Pane Button Creation
-        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File("menuHimTortons.txt"))); //Setting
+        majorMenuPane.setContent(buttonCreation.createFirstSetOfButtons(new File(filename))); //Setting
         // the content as a VBox which contains a list of all the majorMenuButtons.
         for (Button button : menuButtons) { //Iterates through each button in the menu button we created in the
             // button Creation class.
