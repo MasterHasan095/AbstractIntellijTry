@@ -89,13 +89,9 @@ public class amountButtons {
         card.getStyleClass().add("lower-buttons");
         cash.setOnAction(e->{
             finalReceipt.withCash(POSMain.instanceAmount);
-
-
-
-
         });
         card.setOnAction(e->{
-            finalReceipt.newWindow(POSMain.removeFromCartButtons,POSMain.instanceAmount,POSMain.discountAmount);
+            finalReceipt.withCard();
         });
         cash.getStyleClass().add("lower-buttons");
         newHbox.getChildren().addAll(cash,card);

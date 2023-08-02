@@ -1,0 +1,5 @@
+*****ORDER***** 
+Small Coffee Mocha : 2.69
+Small Speciality Tea : 2.19
+Small Brewed Coffee : 2.19
+Small Hot Chocolate : 2.69
