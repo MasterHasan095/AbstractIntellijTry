@@ -22,7 +22,8 @@ public class receiptGeneration {
                 if(POSMain.instanceAmount <=0){
                     POSMain.instanceAmount = 0;
                 }
-                POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+
+                POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount+ "    Discount Amount : " + POSMain.discountAmount);
                 POSMain.orderPane.setContent(receiptGeneration.receiptGenerated(POSMain.removeFromCartButtons));
 
             });

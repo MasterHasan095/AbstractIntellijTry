@@ -58,6 +58,7 @@ public class POSMain extends Application {
 
     //Total cost variable
     protected static double instanceAmount = 0;
+    protected static double discountAmount = 0;
     static Label amountLabel = new Label();
 
     //Hashmap which stores name and price
@@ -86,7 +87,7 @@ public class POSMain extends Application {
                         Label lbl = (Label) tempGrid.getChildren().get(1);
                         instanceAmount += Double.parseDouble(lbl.getText());
                         System.out.println(instanceAmount);
-                        amountLabel.setText("Total : " + instanceAmount);
+                        amountLabel.setText("Total : " + instanceAmount + "    Discount Amount : " + discountAmount);
                         nameAndPrice.put(forActionEvents.forCartText(innerButton),Double.parseDouble(lbl.getText()));
                         receiptGeneration.ButtonListGeneration(forActionEvents.forCartText(innerButton));
                         orderPane.setContent(receiptGeneration.receiptGenerated(removeFromCartButtons));

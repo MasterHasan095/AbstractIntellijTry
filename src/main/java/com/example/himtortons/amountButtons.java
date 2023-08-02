@@ -53,28 +53,29 @@ public class amountButtons {
         discount10.getStyleClass().add("discount_button");
         discount20.getStyleClass().add("discount_button");
         discount5.setOnAction(e->{
-            double discount = POSMain.instanceAmount*0.05;
-            POSMain.instanceAmount -= discount;
+            POSMain.discountAmount= POSMain.instanceAmount*0.05;
+            POSMain.instanceAmount -= POSMain.discountAmount;
             if(POSMain.instanceAmount <=0){
                 POSMain.instanceAmount = 0;
             }
-            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount + "    Discount Amount : " + POSMain.discountAmount);
         });
         discount10.setOnAction(e->{
-            double discount = POSMain.instanceAmount*0.1;
-            POSMain.instanceAmount -= discount;
+            POSMain.discountAmount = POSMain.instanceAmount*0.1;
+            POSMain.instanceAmount -= POSMain.discountAmount;
             if(POSMain.instanceAmount <=0){
                 POSMain.instanceAmount = 0;
             }
-            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount + "    Discount Amount : " + POSMain.discountAmount);
         });
         discount20.setOnAction(e->{
-            double discount = POSMain.instanceAmount*0.2;
-            POSMain.instanceAmount -= discount;
+            POSMain.discountAmount = POSMain.instanceAmount*0.2;
+
+            POSMain.instanceAmount -= POSMain.discountAmount;
             if(POSMain.instanceAmount <=0){
                 POSMain.instanceAmount = 0;
             }
-            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount);
+            POSMain.amountLabel.setText("Total : " + POSMain.instanceAmount + "    Discount Amount : " + POSMain.discountAmount);
         });
         HBox discountHBox = new HBox();
         discountHBox.getChildren().addAll(discount5,discount10,discount20);
@@ -86,6 +87,16 @@ public class amountButtons {
         HBox newHbox = new HBox();
 
         card.getStyleClass().add("lower-buttons");
+        cash.setOnAction(e->{
+            finalReceipt.withCash(POSMain.instanceAmount);
+
+
+
+
+        });
+        card.setOnAction(e->{
+            finalReceipt.newWindow(POSMain.removeFromCartButtons,POSMain.instanceAmount,POSMain.discountAmount);
+        });
         cash.getStyleClass().add("lower-buttons");
         newHbox.getChildren().addAll(cash,card);
         return newHbox;
